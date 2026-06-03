@@ -1,25 +1,1011 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Fly 748 - Book Flights</title>
-    <meta name="description" content="Fly 748 - Book Flights — built on Replit. Update this description to reflect the app." />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="Fly 748 - Book Flights" />
-    <meta property="og:description" content="Fly 748 - Book Flights — built on Replit. Update this description to reflect the app." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Fly 748 - Book Flights" />
-    <meta name="twitter:description" content="Fly 748 - Book Flights — built on Replit. Update this description to reflect the app." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-ayPX1ilK.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DrEP04B9.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fly 748 &ndash; Kenya&apos;s Domestic Airline</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e;background:#fff}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit;border:none}
+:root{
+  --navy:#0a1d3b;--blue:#1a4580;--sky:#2e7dcf;
+  --gold:#e8a020;--gold-d:#c47d10;--red:#c0392b;
+  --green:#27ae60;--wa:#25D366;--wa-d:#128C7E;
+  --light:#f4f7fc;--gray:#6b7280;--border:#d1d9e6
+}
+
+/* NAV */
+nav{background:var(--navy);position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.logo-box{display:flex;align-items:center;gap:12px}
+.logo-icon{width:44px;height:44px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--navy)}
+.logo-txt strong{display:block;color:#fff;font-size:20px;font-weight:800;letter-spacing:1px}
+.logo-txt span{color:#a0b4cc;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:#cdd6e0;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--navy);padding:10px 22px;border-radius:6px;font-weight:700;font-size:14px;transition:background .2s}
+.nav-cta:hover{background:var(--gold-d)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 60%,var(--sky) 100%);min-height:560px;display:flex;align-items:center;overflow:hidden;position:relative}
+.hero-plane{position:absolute;right:0;top:50%;transform:translateY(-60%);font-size:200px;opacity:.06;pointer-events:none;user-select:none}
+.hero-content{position:relative;z-index:2;width:100%;padding:60px 40px 80px}
+.hero-tag{color:var(--gold);font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.hero-title{color:#fff;font-size:clamp(28px,5vw,52px);font-weight:900;line-height:1.15;margin-bottom:10px}
+.hero-title span{color:var(--gold)}
+.hero-sub{color:#a0b8d8;font-size:16px;margin-bottom:40px}
+
+/* SEARCH CARD */
+.search-card{background:rgba(255,255,255,.97);border-radius:16px;padding:28px 32px;box-shadow:0 20px 60px rgba(0,0,0,.3);max-width:880px}
+.s-tabs{display:flex;margin-bottom:22px;border-bottom:2px solid var(--border)}
+.s-tab{background:none;border:none;padding:10px 22px;font-size:14px;font-weight:600;color:var(--gray);cursor:pointer;position:relative;transition:color .2s}
+.s-tab.active{color:var(--blue)}
+.s-tab.active::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--blue)}
+.s-grid{display:grid;grid-template-columns:1fr auto 1fr 1fr auto;gap:12px;align-items:end}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg label{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
+.fg select,.fg input{border:2px solid var(--border);border-radius:8px;padding:12px 14px;font-size:15px;color:var(--navy);background:#f8faff;outline:none;width:100%;transition:border .2s;appearance:none;-webkit-appearance:none}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%236b7280' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.fg select:focus,.fg input:focus{border-color:var(--sky);background:#fff}
+.swap-btn{background:var(--light);border:2px solid var(--border);width:38px;height:38px;border-radius:50%;font-size:18px;display:flex;align-items:center;justify-content:center;align-self:flex-end;margin-bottom:2px;transition:all .2s;flex-shrink:0}
+.swap-btn:hover{background:var(--sky);color:#fff;border-color:var(--sky)}
+.search-btn{background:var(--gold);color:var(--navy);padding:13px 28px;border-radius:8px;font-size:16px;font-weight:800;height:50px;display:flex;align-items:center;gap:8px;transition:background .2s;white-space:nowrap;align-self:flex-end}
+.search-btn:hover{background:var(--gold-d)}
+.s-extras{display:flex;gap:24px;margin-top:16px;align-items:center}
+.pax-grp{display:flex;flex-direction:column;gap:6px}
+.pax-grp label{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
+.pax-ctrl{display:flex;align-items:center;gap:8px}
+.pax-btn{width:28px;height:28px;border:2px solid var(--border);border-radius:50%;background:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;color:var(--blue);transition:all .2s}
+.pax-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.pax-count{font-size:16px;font-weight:700;min-width:20px;text-align:center}
+
+/* SECTIONS */
+.sec{padding:70px 40px}
+.sec-alt{background:var(--light)}
+.sec-hd{text-align:center;margin-bottom:48px}
+.sec-hd .eye{color:var(--sky);font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.sec-hd h2{font-size:clamp(24px,4vw,38px);font-weight:800;color:var(--navy);margin-bottom:12px}
+.sec-hd p{color:var(--gray);font-size:16px;max-width:540px;margin:0 auto}
+
+/* ROUTES */
+.routes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+.rc{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.07);transition:transform .2s,box-shadow .2s;cursor:pointer}
+.rc:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.13)}
+.rc-img{height:160px;position:relative;display:flex;align-items:flex-end;padding:0;overflow:hidden}
+.rc-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,rgba(0,0,0,.1) 60%,transparent 100%)}
+.rc-img-txt{position:relative;z-index:2;padding:16px;color:#fff}
+.rc-city{font-size:22px;font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.rc-ap{font-size:12px;opacity:.9;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.rc-body{padding:16px 20px}
+.rc-meta{display:flex;justify-content:space-between;align-items:center}
+.rc-from{font-size:13px;color:var(--gray)}
+.rc-price{font-size:20px;font-weight:800;color:var(--blue)}
+.rc-price span{font-size:12px;font-weight:400;color:var(--gray)}
+.rc-btn{width:100%;margin-top:14px;padding:10px;background:var(--navy);color:#fff;border-radius:8px;font-weight:700;font-size:14px;transition:background .2s}
+.rc-btn:hover{background:var(--blue)}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:900px;margin:0 auto}
+.wc{text-align:center;padding:30px 20px;background:#fff;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.wc-icon{font-size:40px;margin-bottom:14px}
+.wc h4{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.wc p{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* FLEET */
+.fleet-card{background:#fff;border-radius:14px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,.07);max-width:700px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.fleet-plane{font-size:100px;text-align:center}
+.fleet-info h3{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.fleet-info p{color:var(--gray);font-size:14px;line-height:1.6;margin-bottom:16px}
+.fleet-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f-spec{background:var(--light);border-radius:8px;padding:10px 14px}
+.f-spec .lbl{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
+.f-spec .val{font-size:15px;font-weight:700;color:var(--navy)}
+
+/* FOOTER */
+footer{background:var(--navy);color:#8a9fb8;padding:60px 40px 30px}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.f-brand h3{color:#fff;font-size:20px;font-weight:800;margin-bottom:10px}
+.f-brand p{font-size:13px;line-height:1.7}
+.f-col h4{color:#fff;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.f-col ul li a{font-size:13px;color:#8a9fb8;transition:color .2s}
+.f-col ul li a:hover{color:var(--gold)}
+.f-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center}
+.f-bottom p{font-size:12px}
+.badge-gold{background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;padding:4px 10px;border-radius:4px}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(10,29,59,.75);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:20px;width:100%;max-width:860px;max-height:92vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative}
+.m-close{position:absolute;top:18px;right:20px;z-index:10;background:rgba(255,255,255,.15);border:none;width:36px;height:36px;border-radius:50%;font-size:20px;color:#fff;display:flex;align-items:center;justify-content:center;transition:all .2s;cursor:pointer}
+.m-close:hover{background:var(--red)}
+
+/* WIZARD */
+.wiz-hd{background:var(--navy);padding:28px 32px 24px;border-radius:20px 20px 0 0}
+.wiz-title{color:#fff;font-size:20px;font-weight:800;margin-bottom:20px}
+.wiz-steps{display:flex}
+.ws{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
+.ws::after{content:'';position:absolute;top:15px;left:calc(50% + 18px);right:calc(-50% + 18px);height:2px;background:rgba(255,255,255,.2)}
+.ws:last-child::after{display:none}
+.ws-circle{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;background:rgba(255,255,255,.15);color:rgba(255,255,255,.5);border:2px solid rgba(255,255,255,.2);transition:all .3s;z-index:1}
+.ws.active .ws-circle{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.ws.done .ws-circle{background:var(--green);color:#fff;border-color:var(--green)}
+.ws.done::after{background:var(--green)}
+.ws.active::after{background:rgba(255,255,255,.4)}
+.ws-lbl{font-size:11px;color:rgba(255,255,255,.5);text-align:center;font-weight:600}
+.ws.active .ws-lbl,.ws.done .ws-lbl{color:rgba(255,255,255,.9)}
+
+/* STEP CONTENT */
+.step{padding:28px 32px;display:none}
+.step.active{display:block}
+
+/* STEP 1 - FLIGHTS */
+.fl-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.fl-hd h3{font-size:18px;font-weight:800;color:var(--navy)}
+.route-badge{background:var(--light);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;color:var(--blue)}
+.fl-card{border:2px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.fl-card:hover{border-color:var(--sky);box-shadow:0 4px 16px rgba(46,125,207,.12)}
+.fl-card.selected{border-color:var(--blue);background:#eef4ff}
+.fl-airline{display:flex;flex-direction:column;gap:4px;min-width:70px;flex-shrink:0}
+.fl-logo{width:38px;height:38px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:900;font-size:12px}
+.fl-name{font-size:11px;color:var(--gray);font-weight:600}
+.fl-times{display:flex;align-items:center;gap:16px;flex:1;min-width:200px}
+.fl-t{text-align:center}
+.fl-t .time{font-size:22px;font-weight:800;color:var(--navy)}
+.fl-t .ap{font-size:12px;color:var(--gray);font-weight:600}
+.fl-arr{display:flex;flex-direction:column;align-items:center;gap:2px;flex:1}
+.fl-arr .dur{font-size:12px;color:var(--gray);font-weight:600}
+.fl-arr .line{width:100%;height:2px;background:var(--border);position:relative}
+.fl-arr .line::after{content:'&#9658;';position:absolute;right:-6px;top:-9px;color:var(--gray);font-size:12px}
+.fl-arr .direct{font-size:11px;color:var(--green);font-weight:700}
+.fl-price{text-align:right;min-width:110px;flex-shrink:0}
+.fl-price .cls{font-size:12px;color:var(--green);font-weight:600;background:#e8f8f0;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:4px}
+.fl-price .pr{font-size:22px;font-weight:900;color:var(--blue)}
+.fl-price .per{font-size:11px;color:var(--gray)}
+.fl-radio{width:20px;height:20px;border:2px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.fl-radio.on{border-color:var(--blue);background:var(--blue)}
+.fl-radio.on::after{content:'';width:8px;height:8px;background:#fff;border-radius:50%;display:block}
+
+/* STEP 2 - SEATS */
+.seat-leg{display:flex;gap:18px;margin-bottom:22px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--gray)}
+.leg-dot{width:20px;height:20px;border-radius:4px}
+.ld-av{background:#e8f0fe;border:2px solid #4a7fd4}
+.ld-tk{background:#e5e7eb;border:2px solid #9ca3af}
+.ld-sl{background:#1a4580;border:2px solid #1a4580}
+.ld-ex{background:#fef3c7;border:2px solid #f59e0b}
+.plane-wrap{overflow-x:auto}
+.plane{background:linear-gradient(180deg,#f0f4ff,#e8eeff);border:2px solid #c5d0e8;border-radius:60px 60px 20px 20px;padding:24px 16px;min-width:340px;max-width:420px;margin:0 auto}
+.cockpit-bar{background:var(--navy);border-radius:20px 20px 0 0;height:30px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:12px}
+.seat-row{display:flex;align-items:center;justify-content:center;margin-bottom:5px;gap:4px}
+.row-n{font-size:11px;color:var(--gray);font-weight:700;min-width:22px;text-align:center}
+.seat-grp{display:flex;gap:4px}
+.aisle{width:28px}
+.seat{width:32px;height:32px;border-radius:6px 6px 4px 4px;border:2px solid;cursor:pointer;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s;user-select:none}
+.seat.av{background:#e8f0fe;border-color:#4a7fd4;color:#1a4580}
+.seat.av:hover{background:#b8d0f8;transform:scale(1.1)}
+.seat.tk{background:#e5e7eb;border-color:#9ca3af;color:#9ca3af;cursor:not-allowed}
+.seat.sl{background:#1a4580;border-color:#1a4580;color:#fff;transform:scale(1.1)}
+.seat.ex{background:#fef3c7;border-color:#f59e0b;color:#92400e}
+.seat.ex.sl{background:#f59e0b;border-color:#f59e0b;color:#fff}
+.col-hd{display:flex;justify-content:center;gap:4px;margin-bottom:6px;font-size:11px;font-weight:700;color:var(--gray);padding-left:26px}
+.col-hd span{width:32px;text-align:center}
+.col-hd .ag{width:28px}
+.sel-bar{background:var(--light);border-radius:10px;padding:14px 18px;margin-top:16px}
+.sel-bar h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.sel-tags{display:flex;gap:8px;flex-wrap:wrap}
+.sel-tag{background:var(--blue);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700}
+.need-note{font-size:12px;color:var(--red);font-weight:600;margin-top:8px}
+
+/* STEP 3 - PAX */
+.pax-card{border:2px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.pax-card-title{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pax-card-title .pill{font-size:11px;padding:2px 10px;border-radius:20px;font-weight:700}
+.pill-blue{background:var(--blue);color:#fff}
+.pill-green{background:var(--green);color:#fff}
+.pax-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pfg{display:flex;flex-direction:column;gap:6px}
+.pfg label{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
+.pfg input,.pfg select{border:2px solid var(--border);border-radius:8px;padding:10px 14px;font-size:15px;color:var(--navy);background:#f8faff;outline:none;width:100%;transition:border .2s;appearance:none;-webkit-appearance:none}
+.pfg input:focus,.pfg select:focus{border-color:var(--sky);background:#fff}
+.contact-sec{background:var(--light);border-radius:12px;padding:20px 24px;margin-top:4px}
+.contact-sec h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:14px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* STEP 4 - CONFIRM */
+.conf-wrap{text-align:center;padding:10px 0 24px}
+.conf-check{font-size:72px;margin-bottom:16px;animation:pop .4s ease}
+@keyframes pop{0%{transform:scale(0);opacity:0}80%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.conf-wrap h2{font-size:26px;font-weight:900;color:var(--navy);margin-bottom:8px}
+.conf-wrap > p{color:var(--gray);font-size:15px;margin-bottom:28px}
+.ref-box{background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:14px;padding:24px;margin-bottom:24px;text-align:left;color:#fff}
+.ref-lbl{font-size:12px;color:#a0b8d8;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.ref-num{font-size:28px;font-weight:900;letter-spacing:3px;color:var(--gold);margin-bottom:20px;font-family:monospace}
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ref-item .rl{font-size:11px;color:#a0b8d8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.ref-item .rv{font-size:14px;font-weight:700}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--wa);color:#fff;padding:18px 36px;border-radius:12px;font-size:18px;font-weight:800;width:100%;transition:background .2s;box-shadow:0 8px 24px rgba(37,211,102,.3)}
+.wa-btn:hover{background:var(--wa-d)}
+.wa-icon{width:28px;height:28px;flex-shrink:0}
+.wa-note{font-size:13px;color:var(--gray);margin-top:12px}
+
+/* SUMMARY */
+.sum-bar{background:var(--light);border-left:3px solid var(--border);padding:16px 20px;margin:0 32px 0;border-radius:10px;margin-bottom:20px}
+.sum-bar h4{font-size:12px;font-weight:800;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.sum-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
+.sum-row .k{color:var(--gray)}
+.sum-row .v{font-weight:700;color:var(--navy)}
+.sum-div{border:none;border-top:1px solid var(--border);margin:10px 0}
+.sum-total{display:flex;justify-content:space-between;font-size:16px;font-weight:900;color:var(--blue)}
+
+/* STEP NAV */
+.step-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;border-top:2px solid var(--border);background:var(--light);border-radius:0 0 20px 20px}
+.btn-back{background:none;border:2px solid var(--border);padding:11px 24px;border-radius:8px;font-weight:700;font-size:15px;color:var(--gray);transition:all .2s}
+.btn-back:hover{border-color:var(--gray);color:var(--navy)}
+.btn-next{background:var(--blue);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-weight:800;font-size:15px;transition:background .2s}
+.btn-next:hover{background:var(--navy)}
+.btn-next:disabled{background:#9ca3af;cursor:not-allowed}
+
+/* ALERTS */
+.alert{border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13px;font-weight:600}
+.alert-err{background:#fef2f2;border:1px solid #fecaca;color:var(--red)}
+.alert-info{background:#eff6ff;border:1px solid #bfdbfe;color:var(--blue)}
+.hidden{display:none!important}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:0 16px}
+  .nav-links{display:none}
+  .hero-content{padding:40px 16px 60px}
+  .search-card{padding:20px 16px}
+  .s-grid{grid-template-columns:1fr 1fr}
+  .swap-btn,.search-btn{grid-column:1/-1;justify-content:center;width:100%}
+  .sec{padding:50px 16px}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .fleet-card{grid-template-columns:1fr}
+  .step{padding:20px 16px}
+  .wiz-hd{padding:20px 16px}
+  .pax-form-grid,.contact-grid{grid-template-columns:1fr}
+  .ref-grid{grid-template-columns:1fr}
+  .step-nav{padding:16px}
+  .sum-bar{margin:0 16px 16px}
+  .fl-card{gap:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-box">
+    <div class="logo-icon">748</div>
+    <div class="logo-txt">
+      <strong>FLY 748</strong>
+      <span>Kenya&apos;s Domestic Airline</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#routes">Routes</a></li>
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#baggage">Baggage</a></li>
+  </ul>
+  <button class="nav-cta" onclick="scrollToSearch()">Book a Flight</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-plane">&#9992;</div>
+  <div class="hero-content">
+    <div class="hero-tag">Kenya&apos;s Premier Domestic Airline</div>
+    <h1 class="hero-title">Fly <span>Kenya</span><br>Your Way</h1>
+    <p class="hero-sub">Connecting Nairobi, Mombasa, Ukunda, Malindi, Kisumu &amp; Maasai Mara</p>
+
+    <div class="search-card" id="search-card">
+      <div class="s-tabs">
+        <button class="s-tab active" onclick="setTrip('one-way',this)">One Way</button>
+        <button class="s-tab" onclick="setTrip('return',this)">Return</button>
+      </div>
+      <div class="s-grid">
+        <div class="fg">
+          <label>From</label>
+          <select id="sf">
+            <option value="">Select Origin</option>
+            <option value="NBO">Nairobi (JKIA) &mdash; NBO</option>
+            <option value="MBA">Mombasa &mdash; MBA</option>
+            <option value="UKA">Ukunda / Diani Beach &mdash; UKA</option>
+            <option value="MYD">Malindi &mdash; MYD</option>
+            <option value="KIS">Kisumu &mdash; KIS</option>
+            <option value="MRE">Maasai Mara &mdash; MRE</option>
+          </select>
+        </div>
+        <button class="swap-btn" onclick="doSwap()" title="Swap">&#8644;</button>
+        <div class="fg">
+          <label>To</label>
+          <select id="st">
+            <option value="">Select Destination</option>
+            <option value="NBO">Nairobi (JKIA) &mdash; NBO</option>
+            <option value="MBA">Mombasa &mdash; MBA</option>
+            <option value="UKA">Ukunda / Diani Beach &mdash; UKA</option>
+            <option value="MYD">Malindi &mdash; MYD</option>
+            <option value="KIS">Kisumu &mdash; KIS</option>
+            <option value="MRE">Maasai Mara &mdash; MRE</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Date</label>
+          <input type="date" id="sd">
+        </div>
+        <button class="search-btn" onclick="doSearch()">&#128269; Search</button>
+      </div>
+      <div class="s-extras">
+        <div class="pax-grp">
+          <label>Adults</label>
+          <div class="pax-ctrl">
+            <button class="pax-btn" onclick="chPax('adults',-1)">&#8722;</button>
+            <span class="pax-count" id="adults-n">1</span>
+            <button class="pax-btn" onclick="chPax('adults',1)">&#43;</button>
+          </div>
+        </div>
+        <div class="pax-grp">
+          <label>Children</label>
+          <div class="pax-ctrl">
+            <button class="pax-btn" onclick="chPax('children',-1)">&#8722;</button>
+            <span class="pax-count" id="children-n">0</span>
+            <button class="pax-btn" onclick="chPax('children',1)">&#43;</button>
+          </div>
+        </div>
+        <div class="pax-grp">
+          <label>Infants</label>
+          <div class="pax-ctrl">
+            <button class="pax-btn" onclick="chPax('infants',-1)">&#8722;</button>
+            <span class="pax-count" id="infants-n">0</span>
+            <button class="pax-btn" onclick="chPax('infants',1)">&#43;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTES -->
+<section class="sec" id="routes">
+  <div class="sec-hd">
+    <div class="eye">Our Network</div>
+    <h2>Popular Routes</h2>
+    <p>Direct flights connecting Kenya&apos;s most vibrant destinations</p>
+  </div>
+  <div class="routes-grid">
+    <div class="rc" onclick="quickBook('NBO','MBA')">
+      <div class="rc-img" style="background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=480&h=200&fit=crop&auto=format') center/cover no-repeat;"><div class="rc-img-overlay"></div><div class="rc-img-txt"><div class="rc-city">Mombasa</div><div class="rc-ap">Moi International &middot; MBA</div></div></div>
+      <div class="rc-body"><div class="rc-meta"><div class="rc-from">From Nairobi</div><div class="rc-price">KES 6,500 <span>/ person</span></div></div><button class="rc-btn">Book Now &rarr;</button></div>
+    </div>
+    <div class="rc" onclick="quickBook('NBO','UKA')">
+      <div class="rc-img" style="background:url('https://images.unsplash.com/photo-1559827291-72416316e7a3?w=480&h=200&fit=crop&auto=format') center/cover no-repeat;"><div class="rc-img-overlay"></div><div class="rc-img-txt"><div class="rc-city">Ukunda / Diani</div><div class="rc-ap">Ukunda Airstrip &middot; UKA</div></div></div>
+      <div class="rc-body"><div class="rc-meta"><div class="rc-from">From Nairobi</div><div class="rc-price">KES 7,500 <span>/ person</span></div></div><button class="rc-btn">Book Now &rarr;</button></div>
+    </div>
+    <div class="rc" onclick="quickBook('NBO','MYD')">
+      <div class="rc-img" style="background:url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=480&h=200&fit=crop&auto=format') center/cover no-repeat;"><div class="rc-img-overlay"></div><div class="rc-img-txt"><div class="rc-city">Malindi</div><div class="rc-ap">Malindi Airport &middot; MYD</div></div></div>
+      <div class="rc-body"><div class="rc-meta"><div class="rc-from">From Nairobi</div><div class="rc-price">KES 7,700 <span>/ person</span></div></div><button class="rc-btn">Book Now &rarr;</button></div>
+    </div>
+    <div class="rc" onclick="quickBook('NBO','KIS')">
+      <div class="rc-img" style="background:url('https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=480&h=200&fit=crop&auto=format') center/cover no-repeat;"><div class="rc-img-overlay"></div><div class="rc-img-txt"><div class="rc-city">Kisumu</div><div class="rc-ap">Kisumu International &middot; KIS</div></div></div>
+      <div class="rc-body"><div class="rc-meta"><div class="rc-from">From Nairobi</div><div class="rc-price">KES 8,200 <span>/ person</span></div></div><button class="rc-btn">Book Now &rarr;</button></div>
+    </div>
+    <div class="rc" onclick="quickBook('NBO','MRE')">
+      <div class="rc-img" style="background:url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=480&h=200&fit=crop&auto=format') center/cover no-repeat;"><div class="rc-img-overlay"></div><div class="rc-img-txt"><div class="rc-city">Maasai Mara</div><div class="rc-ap">Mara Serena Airstrip &middot; MRE</div></div></div>
+      <div class="rc-body"><div class="rc-meta"><div class="rc-from">From Nairobi</div><div class="rc-price">KES 9,500 <span>/ person</span></div></div><button class="rc-btn">Book Now &rarr;</button></div>
+    </div>
+    <div class="rc" onclick="quickBook('MBA','NBO')">
+      <div class="rc-img" style="background:url('https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=480&h=200&fit=crop&auto=format') center/cover no-repeat;"><div class="rc-img-overlay"></div><div class="rc-img-txt"><div class="rc-city">Nairobi</div><div class="rc-ap">Jomo Kenyatta Intl &middot; NBO</div></div></div>
+      <div class="rc-body"><div class="rc-meta"><div class="rc-from">From Mombasa</div><div class="rc-price">KES 6,500 <span>/ person</span></div></div><button class="rc-btn">Book Now &rarr;</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec sec-alt" id="about">
+  <div class="sec-hd">
+    <div class="eye">Why Fly 748</div>
+    <h2>The Smarter Way to Fly Kenya</h2>
+    <p>Reliable, affordable, and safe domestic aviation since 1995</p>
+  </div>
+  <div class="why-grid">
+    <div class="wc"><div class="wc-icon">&#128737;</div><h4>BARS Gold Safety</h4><p>Certified at BARS Gold Status &mdash; the highest international aviation safety standard</p></div>
+    <div class="wc"><div class="wc-icon">&#9201;</div><h4>On-Time Flights</h4><p>Six daily coastal movements designed for punctuality and flexibility</p></div>
+    <div class="wc"><div class="wc-icon">&#128176;</div><h4>Best Fares</h4><p>Fares from just KES 6,500 &mdash; affordable flying for everyone</p></div>
+    <div class="wc"><div class="wc-icon">&#127757;</div><h4>30+ Years Experience</h4><p>748 Air Services has served East &amp; Central Africa since 1995</p></div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="sec" id="fleet">
+  <div class="sec-hd"><div class="eye">Our Aircraft</div><h2>Modern, Reliable Fleet</h2></div>
+  <div class="fleet-card">
+    <div class="fleet-plane">&#9992;&#65039;</div>
+    <div class="fleet-info">
+      <h3>Bombardier Dash 8-Q400</h3>
+      <p>Our turboprop fleet is optimised for East Africa&apos;s short-haul routes &mdash; fuel efficient, reliable, and comfortable for the distances we fly.</p>
+      <div class="fleet-specs">
+        <div class="f-spec"><div class="lbl">Seats</div><div class="val">70&ndash;78</div></div>
+        <div class="f-spec"><div class="lbl">Speed</div><div class="val">667 km/h</div></div>
+        <div class="f-spec"><div class="lbl">Range</div><div class="val">2,522 km</div></div>
+        <div class="f-spec"><div class="lbl">Fleet Size</div><div class="val">7 active</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAGGAGE -->
+<section class="sec sec-alt" id="baggage">
+  <div class="sec-hd"><div class="eye">Travel Info</div><h2>Baggage Policy</h2><p>Pack smart for your Fly 748 journey</p></div>
+  <div class="why-grid" style="max-width:700px">
+    <div class="wc"><div class="wc-icon">&#127890;</div><h4>Carry-On</h4><p>Up to <strong>5 kg</strong> per passenger. Keep valuables in your carry-on.</p></div>
+    <div class="wc"><div class="wc-icon">&#129523;</div><h4>Maasai Mara Flights</h4><p>Total baggage must not exceed <strong>10 kg</strong> due to airstrip restrictions.</p></div>
+    <div class="wc"><div class="wc-icon">&#9888;</div><h4>Valuables</h4><p>The airline is not liable for loss of valuables from checked baggage.</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-grid">
+    <div class="f-brand"><h3>&#9992; FLY 748</h3><p>748 Air Services has over three decades of aviation experience providing passenger and cargo services across East &amp; Central Africa. BARS Gold certified.</p></div>
+    <div class="f-col"><h4>Destinations</h4><ul><li><a href="#">Nairobi (JKIA)</a></li><li><a href="#">Mombasa</a></li><li><a href="#">Ukunda / Diani</a></li><li><a href="#">Malindi</a></li><li><a href="#">Kisumu</a></li><li><a href="#">Maasai Mara</a></li></ul></div>
+    <div class="f-col"><h4>Information</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Fleet</a></li><li><a href="#">Safety</a></li><li><a href="#">Baggage Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+    <div class="f-col"><h4>Support</h4><ul><li><a href="#">Book a Flight</a></li><li><a href="#">Manage Booking</a></li><li><a href="#">Check-In</a></li><li><a href="#">Travel Agents</a></li><li><a href="#">FAQs</a></li></ul></div>
+  </div>
+  <div class="f-bottom"><p>&copy; 2026 748 Air Services Ltd. All rights reserved. | Nairobi, Kenya</p><span class="badge-gold">BARS GOLD CERTIFIED</span></div>
+</footer>
+
+<!-- BOOKING MODAL -->
+<div class="overlay" id="modal">
+  <div class="modal">
+    <button class="m-close" onclick="closeModal()">&#215;</button>
+
+    <!-- WIZARD HEADER -->
+    <div class="wiz-hd">
+      <div class="wiz-title">Book Your Flight</div>
+      <div class="wiz-steps">
+        <div class="ws active" id="wi1"><div class="ws-circle">1</div><div class="ws-lbl">Select Flight</div></div>
+        <div class="ws" id="wi2"><div class="ws-circle">2</div><div class="ws-lbl">Choose Seat</div></div>
+        <div class="ws" id="wi3"><div class="ws-circle">3</div><div class="ws-lbl">Passengers</div></div>
+        <div class="ws" id="wi4"><div class="ws-circle">4</div><div class="ws-lbl">Confirmation</div></div>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step active" id="s1">
+      <div class="fl-hd">
+        <h3 id="s1h">Available Flights</h3>
+        <span class="route-badge" id="s1rb">Select Route</span>
+      </div>
+      <div id="err-box" class="alert alert-err hidden"></div>
+      <div id="fl-list"></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="s2">
+      <h3 style="font-size:18px;font-weight:800;color:var(--navy);margin-bottom:6px">Select Your Seats</h3>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:20px">Please select <strong id="need-n">1</strong> seat(s).</p>
+      <div class="seat-leg">
+        <div class="leg-item"><div class="leg-dot ld-av"></div>Available</div>
+        <div class="leg-item"><div class="leg-dot ld-tk"></div>Taken</div>
+        <div class="leg-item"><div class="leg-dot ld-sl"></div>Selected</div>
+        <div class="leg-item"><div class="leg-dot ld-ex"></div>Exit Row</div>
+      </div>
+      <div class="plane-wrap">
+        <div class="plane" id="seat-map"></div>
+      </div>
+      <div class="sel-bar">
+        <h4>Selected Seats</h4>
+        <div class="sel-tags" id="sel-tags"></div>
+        <div class="need-note hidden" id="need-note"></div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="s3">
+      <h3 style="font-size:18px;font-weight:800;color:var(--navy);margin-bottom:6px">Passenger Details</h3>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:20px">Enter details as they appear on your ID/Passport.</p>
+      <div id="pax-form"></div>
+      <div class="contact-sec">
+        <h4>Contact Information</h4>
+        <div class="contact-grid">
+          <div class="pfg"><label>Email Address</label><input type="email" id="c-email" placeholder="your@email.com"></div>
+          <div class="pfg"><label>WhatsApp / Mobile</label><input type="tel" id="c-phone" placeholder="+254 700 000 000"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" id="s4">
+      <div class="conf-wrap">
+        <div class="conf-check">&#9989;</div>
+        <h2>Booking Confirmed!</h2>
+        <p>Your flight has been reserved. Tap the button below to confirm via WhatsApp.</p>
+        <div class="ref-box">
+          <div class="ref-lbl">Booking Reference</div>
+          <div class="ref-num" id="ref-num">FLY748-XXXXXX</div>
+          <div class="ref-grid">
+            <div class="ref-item"><div class="rl">Route</div><div class="rv" id="c-route"></div></div>
+            <div class="ref-item"><div class="rl">Date</div><div class="rv" id="c-date"></div></div>
+            <div class="ref-item"><div class="rl">Flight</div><div class="rv" id="c-flight"></div></div>
+            <div class="ref-item"><div class="rl">Seats</div><div class="rv" id="c-seats"></div></div>
+            <div class="ref-item"><div class="rl">Passengers</div><div class="rv" id="c-pax"></div></div>
+            <div class="ref-item"><div class="rl">Total Fare</div><div class="rv" id="c-fare"></div></div>
+          </div>
+        </div>
+        <button class="wa-btn" onclick="openWA()">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Confirm via WhatsApp
+        </button>
+        <p class="wa-note">Opens WhatsApp with your full booking details pre-filled. Our team will confirm within minutes.</p>
+      </div>
+    </div>
+
+    <!-- SUMMARY BAR (steps 2 & 3) -->
+    <div class="sum-bar hidden" id="sum-bar">
+      <h4>Booking Summary</h4>
+      <div class="sum-row"><span class="k">Route</span><span class="v" id="sb-route">-</span></div>
+      <div class="sum-row"><span class="k">Flight</span><span class="v" id="sb-flight">-</span></div>
+      <div class="sum-row"><span class="k">Date</span><span class="v" id="sb-date">-</span></div>
+      <div class="sum-row"><span class="k">Seats</span><span class="v" id="sb-seats">-</span></div>
+      <hr class="sum-div">
+      <div class="sum-total"><span>Total</span><span id="sb-total">KES 0</span></div>
+    </div>
+
+    <!-- STEP NAV -->
+    <div class="step-nav" id="step-nav">
+      <button class="btn-back hidden" id="btn-back" onclick="prevStep()">&#8592; Back</button>
+      <div></div>
+      <button class="btn-next" id="btn-next" onclick="nextStep()">Next &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== DATA ==========
+var AP = {
+  NBO:{name:'Nairobi',full:'Nairobi (JKIA)',code:'NBO'},
+  MBA:{name:'Mombasa',full:'Mombasa',code:'MBA'},
+  UKA:{name:'Ukunda/Diani',full:'Ukunda/Diani Beach',code:'UKA'},
+  MYD:{name:'Malindi',full:'Malindi',code:'MYD'},
+  KIS:{name:'Kisumu',full:'Kisumu',code:'KIS'},
+  MRE:{name:'Maasai Mara',full:'Maasai Mara',code:'MRE'}
+};
+
+// Base fares per route pair (symmetric)
+var FARES = {
+  'NBO-MBA':6500,'NBO-UKA':7500,'NBO-MYD':7700,'NBO-KIS':8200,'NBO-MRE':9500,
+  'MBA-UKA':4500,'MBA-MYD':5500,'MBA-KIS':8800,'MBA-MRE':10000,
+  'UKA-MYD':5000,'UKA-KIS':9000,'UKA-MRE':10500,
+  'MYD-KIS':9200,'MYD-MRE':10800,
+  'KIS-MRE':9800
+};
+// Durations per route pair (symmetric)
+var DURS = {
+  'NBO-MBA':'1h 05m','NBO-UKA':'1h 15m','NBO-MYD':'1h 20m','NBO-KIS':'55m','NBO-MRE':'55m',
+  'MBA-UKA':'20m','MBA-MYD':'40m','MBA-KIS':'1h 30m','MBA-MRE':'1h 45m',
+  'UKA-MYD':'30m','UKA-KIS':'1h 35m','UKA-MRE':'1h 50m',
+  'MYD-KIS':'1h 40m','MYD-MRE':'1h 55m',
+  'KIS-MRE':'1h 10m'
+};
+var TIMES = [
+  {dep:'06:00',depM:360},{dep:'08:30',depM:510},{dep:'10:00',depM:600},
+  {dep:'13:00',depM:780},{dep:'15:30',depM:930},{dep:'17:45',depM:1065}
+];
+function addMins(depStr,durStr){
+  var parts=depStr.split(':'), h=parseInt(parts[0]), m=parseInt(parts[1]);
+  var mins=h*60+m;
+  var d=durStr.match(/(\d+)h\s*(\d+)m/);
+  if(d) mins+=parseInt(d[1])*60+parseInt(d[2]);
+  else{ var d2=durStr.match(/(\d+)m/); if(d2) mins+=parseInt(d2[1]); }
+  var rh=Math.floor(mins/60)%24, rm=mins%60;
+  return (rh<10?'0':'')+rh+':'+(rm<10?'0':'')+rm;
+}
+function getFlights(from,to){
+  var key1=from+'-'+to, key2=to+'-'+from;
+  var fare=FARES[key1]||FARES[key2]||7000;
+  var dur=DURS[key1]||DURS[key2]||'1h 00m';
+  var codes=['A','B','C','D','E','F','G','H'];
+  var num=parseInt((from+to).split('').reduce(function(a,c){return a+c.charCodeAt(0);},0))%800+100;
+  return TIMES.map(function(t,i){
+    var isB=(i===2||i===4);
+    var arr=addMins(t.dep,dur);
+    return {
+      id:'F748-'+(num+i),
+      dep:t.dep,
+      arr:arr,
+      dur:dur,
+      price:isB?Math.round(fare*1.35/100)*100:fare,
+      cl:isB?'Business':'Economy'
+    };
+  });
+}
+
+// ========== STATE ==========
+var S = {
+  trip:'one-way', from:'', to:'', date:'', adults:1, children:0, infants:0,
+  flight:null, seats:[], takenSeats:[], passengers:[],
+  email:'', phone:'', ref:'', step:1
+};
+
+// ========== INIT ==========
+(function(){
+  var t = new Date();
+  var ds = t.getFullYear()+'-'+(String(t.getMonth()+1).padStart(2,'0'))+'-'+(String(t.getDate()).padStart(2,'0'));
+  document.getElementById('sd').min = ds;
+  document.getElementById('sd').value = ds;
+  // Seat map click delegation
+  document.getElementById('seat-map').addEventListener('click', function(e){
+    var el = e.target;
+    while(el && el !== this){
+      if(el.classList.contains('seat')){
+        var sid = el.getAttribute('data-sid');
+        if(sid) toggleSeat(sid);
+        return;
+      }
+      el = el.parentElement;
+    }
+  });
+  // Flight list click delegation
+  document.getElementById('fl-list').addEventListener('click', function(e){
+    var el = e.target;
+    while(el && el !== this){
+      if(el.classList.contains('fl-card')){
+        selectFlight(el.getAttribute('data-fid'));
+        return;
+      }
+      el = el.parentElement;
+    }
+  });
+})();
+
+// ========== HELPERS ==========
+function fmtDate(ds){
+  if(!ds) return '-';
+  var d = new Date(ds+'T00:00:00');
+  return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'long',year:'numeric'});
+}
+function fmtNum(n){ return n.toLocaleString(); }
+
+// ========== NAV ==========
+function scrollToSearch(){ window.scrollTo({top:0,behavior:'smooth'}); setTimeout(function(){document.getElementById('sf').focus();},600); }
+
+// ========== TRIP TYPE ==========
+function setTrip(type, btn){
+  S.trip = type;
+  document.querySelectorAll('.s-tab').forEach(function(t){t.classList.remove('active');});
+  btn.classList.add('active');
+}
+
+// ========== SWAP ==========
+function doSwap(){
+  var sf = document.getElementById('sf'), st = document.getElementById('st');
+  var tmp = sf.value; sf.value = st.value; st.value = tmp;
+  S.from = sf.value; S.to = st.value;
+}
+
+// ========== PAX ==========
+function chPax(type, delta){
+  var el = document.getElementById(type+'-n');
+  var v = parseInt(el.textContent) + delta;
+  if(type==='adults') v = Math.max(1,Math.min(9,v));
+  else v = Math.max(0,Math.min(9,v));
+  S[type] = v;
+  el.textContent = v;
+}
+
+// ========== SEARCH ==========
+function doSearch(){
+  S.from = document.getElementById('sf').value;
+  S.to = document.getElementById('st').value;
+  S.date = document.getElementById('sd').value;
+  S.adults = parseInt(document.getElementById('adults-n').textContent);
+  S.children = parseInt(document.getElementById('children-n').textContent);
+  S.infants = parseInt(document.getElementById('infants-n').textContent);
+  if(!S.from){ alert('Please select an origin.'); return; }
+  if(!S.to){ alert('Please select a destination.'); return; }
+  if(S.from===S.to){ alert('Origin and destination cannot be the same.'); return; }
+  if(!S.date){ alert('Please select a departure date.'); return; }
+  openModal();
+}
+
+function quickBook(from, to){
+  var t = new Date();
+  var ds = t.getFullYear()+'-'+(String(t.getMonth()+1).padStart(2,'0'))+'-'+(String(t.getDate()).padStart(2,'0'));
+  S.from=from; S.to=to; S.date=ds;
+  S.adults=1; S.children=0; S.infants=0;
+  document.getElementById('sf').value=from;
+  document.getElementById('st').value=to;
+  document.getElementById('sd').value=ds;
+  openModal();
+}
+
+// ========== MODAL ==========
+function openModal(){
+  S.flight=null; S.seats=[]; S.passengers=[]; S.step=1;
+  buildStep1();
+  goStep(1);
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('modal').addEventListener('click',function(e){ if(e.target===this) closeModal(); });
+
+// ========== STEP CONTROL ==========
+function goStep(n){
+  S.step=n;
+  ['s1','s2','s3','s4'].forEach(function(id,i){ document.getElementById(id).classList.toggle('active',i+1===n); });
+  for(var i=1;i<=4;i++){
+    var el=document.getElementById('wi'+i);
+    el.classList.remove('active','done');
+    if(i<n) el.classList.add('done');
+    if(i===n) el.classList.add('active');
+  }
+  var bb=document.getElementById('btn-back'), bn=document.getElementById('btn-next');
+  var nav=document.getElementById('step-nav'), sb=document.getElementById('sum-bar');
+  bb.classList.toggle('hidden',n===1);
+  sb.classList.toggle('hidden',n<2||n===4);
+  nav.style.display = (n===4)?'none':'';
+  if(n===1){ bn.textContent='Next \u2192'; bn.disabled=true; }
+  else if(n===2){ bn.textContent='Continue \u2192'; bn.disabled=false; }
+  else if(n===3){ bn.textContent='Confirm Booking \u2192'; bn.disabled=false; }
+}
+
+function nextStep(){
+  if(S.step===1){
+    if(!S.flight){ showErr('Please select a flight to continue.'); return; }
+    buildStep2(); goStep(2);
+  } else if(S.step===2){
+    var need=S.adults+S.children;
+    if(S.seats.length<need){
+      var nn=document.getElementById('need-note');
+      nn.textContent='Please select '+(need-S.seats.length)+' more seat(s).';
+      nn.classList.remove('hidden'); return;
+    }
+    document.getElementById('need-note').classList.add('hidden');
+    buildStep3(); goStep(3);
+  } else if(S.step===3){
+    if(!validatePax()) return;
+    buildStep4(); goStep(4);
+  }
+}
+function prevStep(){ if(S.step>1) goStep(S.step-1); }
+
+// ========== STEP 1 ==========
+function buildStep1(){
+  var fa=AP[S.from]||{name:S.from}, ta=AP[S.to]||{name:S.to};
+  var flights=getFlights(S.from,S.to);
+  document.getElementById('s1h').textContent='Available Flights';
+  document.getElementById('s1rb').textContent=(fa.name||S.from)+' \u2192 '+(ta.name||S.to)+' \u00B7 '+fmtDate(S.date);
+  var list=document.getElementById('fl-list');
+  document.getElementById('err-box').classList.add('hidden');
+  var html='';
+  for(var i=0;i<flights.length;i++){
+    var f=flights[i];
+    html+='<div class="fl-card" data-fid="'+f.id+'">';
+    html+='<div class="fl-radio" id="r-'+f.id.replace(/-/g,'_')+'"></div>';
+    html+='<div class="fl-airline"><div class="fl-logo">748</div><div class="fl-name">Fly 748</div></div>';
+    html+='<div class="fl-times">';
+    html+='<div class="fl-t"><div class="time">'+f.dep+'</div><div class="ap">'+S.from+'</div></div>';
+    html+='<div class="fl-arr"><div class="dur">'+f.dur+'</div><div class="line"></div><div class="direct">Direct</div></div>';
+    html+='<div class="fl-t"><div class="time">'+f.arr+'</div><div class="ap">'+S.to+'</div></div>';
+    html+='</div>';
+    html+='<div class="fl-price"><div class="cls">'+f.cl+'</div><div class="pr">KES '+fmtNum(f.price)+'</div><div class="per">per person</div></div>';
+    html+='</div>';
+  }
+  list.innerHTML=html;
+}
+
+function selectFlight(fid){
+  var flights=getFlights(S.from,S.to);
+  S.flight=null;
+  for(var i=0;i<flights.length;i++){
+    var f=flights[i];
+    var card=document.querySelector('[data-fid="'+f.id+'"]');
+    var radio=document.getElementById('r-'+f.id.replace(/-/g,'_'));
+    if(f.id===fid){ 
+      if(card) card.classList.add('selected');
+      if(radio) radio.classList.add('on');
+      S.flight=f;
+    } else {
+      if(card) card.classList.remove('selected');
+      if(radio) radio.classList.remove('on');
+    }
+  }
+  document.getElementById('btn-next').disabled=false;
+  document.getElementById('err-box').classList.add('hidden');
+}
+
+function showErr(msg){ var e=document.getElementById('err-box'); e.textContent=msg; e.classList.remove('hidden'); }
+
+// ========== STEP 2 ==========
+function buildStep2(){
+  updateSummary();
+  var need=S.adults+S.children;
+  document.getElementById('need-n').textContent=need;
+  S.seats=[];
+  // Random taken seats ~40%
+  S.takenSeats=[];
+  var all=[];
+  for(var r=1;r<=19;r++){
+    ['A','B','C','D','E','F'].forEach(function(c){ all.push(r+c); });
+  }
+  all.sort(function(){ return Math.random()-.5; });
+  S.takenSeats=all.slice(0,Math.floor(all.length*.4));
+  renderMap();
+  renderTags();
+}
+
+function renderMap(){
+  var map=document.getElementById('seat-map');
+  var exitRows=[4,13];
+  var html='<div class="cockpit-bar">&#9992; COCKPIT &mdash; FLIGHT '+(S.flight?S.flight.id:'')+'</div>';
+  html+='<div class="col-hd"><span style="min-width:22px"></span><span>A</span><span>B</span><span>C</span><span class="ag"></span><span>D</span><span>E</span><span>F</span></div>';
+  for(var r=1;r<=19;r++){
+    var isExit=(exitRows.indexOf(r)>=0);
+    if(isExit) html+='<div style="text-align:center;font-size:10px;color:#f59e0b;font-weight:700;margin:3px 0">&#9889; EXIT ROW</div>';
+    html+='<div class="seat-row"><span class="row-n">'+r+'</span><div class="seat-grp">';
+    ['A','B','C'].forEach(function(col){
+      html+=makeSeat(r+col,isExit);
+    });
+    html+='</div><div class="aisle"></div><div class="seat-grp">';
+    ['D','E','F'].forEach(function(col){
+      html+=makeSeat(r+col,isExit);
+    });
+    html+='</div></div>';
+  }
+  html+='<div style="text-align:center;font-size:24px;margin-top:12px;opacity:.3">&#9660; TAIL</div>';
+  map.innerHTML=html;
+}
+
+function makeSeat(sid,isExit){
+  var taken=(S.takenSeats.indexOf(sid)>=0);
+  var selected=(S.seats.indexOf(sid)>=0);
+  var cls='seat ';
+  if(taken) cls+='tk';
+  else if(selected) cls+=(isExit?'ex sl':'sl');
+  else cls+=(isExit?'ex':'av');
+  return '<div class="'+cls+'" data-sid="'+(taken?'':sid)+'">'+(taken?'X':sid)+'</div>';
+}
+
+function toggleSeat(sid){
+  if(!sid) return;
+  var need=S.adults+S.children;
+  var idx=S.seats.indexOf(sid);
+  if(idx>=0){ S.seats.splice(idx,1); }
+  else{
+    if(S.seats.length>=need) S.seats.shift();
+    S.seats.push(sid);
+  }
+  renderMap();
+  renderTags();
+  updateSummary();
+}
+
+function renderTags(){
+  var c=document.getElementById('sel-tags');
+  if(!S.seats.length){ c.innerHTML='<em style="color:var(--gray);font-size:13px">None selected</em>'; return; }
+  var h='';
+  for(var i=0;i<S.seats.length;i++) h+='<span class="sel-tag">Seat '+S.seats[i]+'</span>';
+  c.innerHTML=h;
+}
+
+// ========== STEP 3 ==========
+function buildStep3(){
+  updateSummary();
+  var form=document.getElementById('pax-form');
+  var list=[];
+  for(var i=0;i<S.adults;i++) list.push({lbl:'Adult '+(i+1),type:'adult'});
+  for(var i=0;i<S.children;i++) list.push({lbl:'Child '+(i+1),type:'child'});
+  for(var i=0;i<S.infants;i++) list.push({lbl:'Infant '+(i+1),type:'infant'});
+  var html='';
+  for(var i=0;i<list.length;i++){
+    var p=list[i];
+    var seatPill=S.seats[i]?'<span class="pill pill-green">Seat '+S.seats[i]+'</span>':'';
+    html+='<div class="pax-card">';
+    html+='<div class="pax-card-title">'+p.lbl+'<span class="pill pill-blue">'+p.type.charAt(0).toUpperCase()+p.type.slice(1)+'</span>'+seatPill+'</div>';
+    html+='<div class="pax-form-grid">';
+    html+='<div class="pfg"><label>First Name</label><input type="text" id="p'+i+'fn" placeholder="First name"></div>';
+    html+='<div class="pfg"><label>Last Name</label><input type="text" id="p'+i+'ln" placeholder="Last name"></div>';
+    html+='<div class="pfg"><label>Date of Birth</label><input type="date" id="p'+i+'dob"></div>';
+    html+='<div class="pfg"><label>Nationality</label><select id="p'+i+'nat">';
+    html+='<option value="KE">Kenyan</option><option value="UG">Ugandan</option><option value="TZ">Tanzanian</option><option value="RW">Rwandan</option><option value="ET">Ethiopian</option><option value="GB">British</option><option value="US">American</option><option value="DE">German</option><option value="FR">French</option><option value="Other">Other</option>';
+    html+='</select></div>';
+    html+='<div class="pfg"><label>ID / Passport No.</label><input type="text" id="p'+i+'id" placeholder="e.g. A12345678"></div>';
+    html+='<div class="pfg"><label>Gender</label><select id="p'+i+'gdr"><option>Male</option><option>Female</option><option>Other</option></select></div>';
+    html+='</div></div>';
+  }
+  form.innerHTML=html;
+}
+
+function validatePax(){
+  var total=S.adults+S.children+S.infants;
+  var list=[];
+  for(var i=0;i<total;i++){
+    var fn=document.getElementById('p'+i+'fn');
+    var ln=document.getElementById('p'+i+'ln');
+    if(!fn||!ln) continue;
+    if(!fn.value.trim()||!ln.value.trim()){ alert('Please enter name for passenger '+(i+1)+'.'); return false; }
+    list.push({
+      first:fn.value.trim(), last:ln.value.trim(),
+      dob:(document.getElementById('p'+i+'dob')||{}).value||'',
+      nat:(document.getElementById('p'+i+'nat')||{}).value||'',
+      id:(document.getElementById('p'+i+'id')||{}).value||'',
+      gender:(document.getElementById('p'+i+'gdr')||{}).value||'',
+      seat:S.seats[i]||'TBD'
+    });
+  }
+  var email=document.getElementById('c-email').value.trim();
+  if(!email){ alert('Please enter a contact email address.'); return false; }
+  S.passengers=list;
+  S.email=email;
+  S.phone=document.getElementById('c-phone').value.trim();
+  return true;
+}
+
+// ========== STEP 4 ==========
+function buildStep4(){
+  S.ref='FLY748-'+Math.random().toString(36).substring(2,8).toUpperCase();
+  document.getElementById('ref-num').textContent=S.ref;
+  var from=(AP[S.from]||{full:S.from}).full;
+  var to=(AP[S.to]||{full:S.to}).full;
+  var names=S.passengers.map(function(p){return p.first+' '+p.last;}).join(', ');
+  var total=S.flight?S.flight.price*(S.adults+S.children):0;
+  document.getElementById('c-route').textContent=from+' \u2192 '+to;
+  document.getElementById('c-date').textContent=fmtDate(S.date);
+  document.getElementById('c-flight').textContent=S.flight?S.flight.id+' ('+S.flight.dep+'-'+S.flight.arr+')':'-';
+  document.getElementById('c-seats').textContent=S.seats.join(', ')||'TBD';
+  document.getElementById('c-pax').textContent=names;
+  document.getElementById('c-fare').textContent='KES '+fmtNum(total);
+}
+
+// ========== WHATSAPP ==========
+function openWA(){
+  var from=(AP[S.from]||{full:S.from}).full;
+  var to=(AP[S.to]||{full:S.to}).full;
+  var paxLines=S.passengers.map(function(p,i){
+    return (i+1)+'. '+p.first+' '+p.last+' | Seat: '+p.seat+' | DOB: '+(p.dob||'N/A');
+  }).join('\n');
+  var total=S.flight?S.flight.price*(S.adults+S.children):0;
+  var msg='*FLY 748 BOOKING*\n'
+    +'---------------------------\n'
+    +'*Ref:* '+S.ref+'\n'
+    +'*Route:* '+from+' to '+to+'\n'
+    +'*Date:* '+fmtDate(S.date)+'\n'
+    +'*Flight:* '+(S.flight?S.flight.id:'-')+' | Dep: '+(S.flight?S.flight.dep:'-')+'\n'
+    +'*Seats:* '+( S.seats.join(', ')||'TBD')+'\n'
+    +'---------------------------\n'
+    +'*PASSENGERS:*\n'+paxLines+'\n'
+    +'---------------------------\n'
+    +'*Total Fare:* KES '+fmtNum(total)+'\n'
+    +'*Email:* '+(S.email||'N/A')+'\n'
+    +'---------------------------\n'
+    +'Please confirm this booking. Thank you!';
+  window.open('https://wa.me/254100067153?text='+encodeURIComponent(msg),'_blank');
+}
+
+// ========== SUMMARY ==========
+function updateSummary(){
+  if(!S.flight) return;
+  var from=(AP[S.from]||{name:S.from}).name;
+  var to=(AP[S.to]||{name:S.to}).name;
+  var pax=S.adults+S.children;
+  var total=S.flight.price*pax;
+  document.getElementById('sb-route').textContent=from+' \u2192 '+to;
+  document.getElementById('sb-flight').textContent=S.flight.id+' ('+S.flight.dep+')';
+  document.getElementById('sb-date').textContent=fmtDate(S.date);
+  document.getElementById('sb-seats').textContent=S.seats.length?S.seats.join(', '):'None yet';
+  document.getElementById('sb-total').textContent='KES '+fmtNum(total);
+}
+</script>
+</body>
 </html>
